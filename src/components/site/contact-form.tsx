@@ -97,7 +97,7 @@ export function ContactForm() {
           name="name"
           required
           autoComplete="name"
-          className="min-h-12 rounded-2xl border border-line bg-elev px-4 text-fg"
+          className="min-h-12 rounded-2xl border border-line bg-elev px-4 text-fg focus:border-brand focus:ring-2 focus:ring-brand/20"
         />
       </label>
       <label className="grid gap-2">
@@ -107,7 +107,7 @@ export function ContactForm() {
           type="email"
           required
           autoComplete="email"
-          className="min-h-12 rounded-2xl border border-line bg-elev px-4 text-fg"
+          className="min-h-12 rounded-2xl border border-line bg-elev px-4 text-fg focus:border-brand focus:ring-2 focus:ring-brand/20"
         />
       </label>
       <label className="grid gap-2">
@@ -116,14 +116,14 @@ export function ContactForm() {
           name="message"
           required
           rows={6}
-          className="rounded-2xl border border-line bg-elev px-4 py-3 text-fg"
+          className="rounded-2xl border border-line bg-elev px-4 py-3 text-fg focus:border-brand focus:ring-2 focus:ring-brand/20"
         />
       </label>
       <div className="flex flex-wrap items-center gap-4">
         <button
           type="submit"
           disabled={status.state === "sending"}
-          className="inline-flex min-h-12 items-center justify-center rounded-full bg-brand px-6 font-display text-sm font-bold text-brand-fg disabled:opacity-60"
+          className="button-press inline-flex min-h-12 items-center justify-center rounded-full bg-brand px-6 font-display text-sm font-bold text-brand-fg disabled:opacity-60"
         >
           {status.state === "sending" ? "Sending…" : "Send the note"}
         </button>

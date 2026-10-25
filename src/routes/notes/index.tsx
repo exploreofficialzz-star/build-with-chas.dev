@@ -1,4 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { ArrowUpRight } from "lucide-react";
+import { Reveal } from "@/components/site/reveal";
 import { Shell } from "@/components/site/shell";
 import { NOTES } from "@/data/content";
 
@@ -19,25 +21,35 @@ export const Route = createFileRoute("/notes/")({
 function NotesPage() {
   return (
     <Shell>
-      <div className="mx-auto max-w-3xl px-5 py-12">
-        <p className="font-display text-xs font-semibold uppercase tracking-[0.18em] text-brand">Notes</p>
-        <h1 className="mt-3 font-display text-4xl font-extrabold tracking-tight sm:text-5xl">
-          Written here, from the life. Not a press page.
-        </h1>
-        <ul className="mt-10 grid gap-4">
-          {NOTES.map((note) => (
+      <div className="mx-auto max-w-7xl px-5 pb-20 pt-10 sm:px-8 sm:pt-16">
+        <Reveal>
+          <div className="max-w-4xl border-b border-line pb-8">
+            <p className="font-display text-xs font-bold uppercase tracking-[0.19em] text-brand">Notes · From the workbench</p>
+            <h1 className="mt-4 font-display text-[clamp(3rem,6vw,5rem)] font-bold leading-[0.94] tracking-[-0.07em]">
+              Things I’m still learning to say clearly.
+            </h1>
+            <p className="mt-5 max-w-2xl text-lg leading-relaxed text-muted">Personal notes about building, running out of resources, and starting again. Not a press page.</p>
+          </div>
+        </Reveal>
+        <ul className="mt-8 grid gap-3 md:grid-cols-2">
+          {NOTES.map((note, index) => (
             <li key={note.slug}>
-              <Link
-                to="/notes/$slug"
-                params={{ slug: note.slug }}
-                className="block rounded-3xl border border-line p-5 hover:border-brand"
-              >
-                <p className="font-display text-xs font-semibold uppercase tracking-[0.16em] text-muted">
-                  {note.kicker}
-                </p>
-                <h2 className="mt-2 font-display text-2xl font-bold">{note.title}</h2>
-                <p className="mt-2 text-muted">{note.summary}</p>
-              </Link>
+              <Reveal delay={(index % 2) * 80}>
+                <Link
+                  to="/notes/$slug"
+                  params={{ slug: note.slug }}
+                  className="card-hover group flex h-full min-h-52 flex-col rounded-[1.6rem] border border-line bg-elev p-5 sm:p-7"
+                >
+                  <div className="flex items-center justify-between gap-3">
+                    <p className="font-display text-[0.67rem] font-bold uppercase tracking-[0.16em] text-brand">{note.kicker}</p>
+                    <ArrowUpRight className="size-4 text-muted transition-colors group-hover:text-brand" aria-hidden />
+                  </div>
+                  <div className="mt-auto pt-8">
+                    <h2 className="font-display text-2xl font-bold tracking-tight">{note.title}</h2>
+                    <p className="mt-2 max-w-xl text-sm leading-relaxed text-muted">{note.summary}</p>
+                  </div>
+                </Link>
+              </Reveal>
             </li>
           ))}
         </ul>

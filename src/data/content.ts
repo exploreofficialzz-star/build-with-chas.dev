@@ -438,6 +438,22 @@ export function repoHref(repo: string) {
   return gh(repo);
 }
 
+export const TRADING_BOT_REPOSITORIES = [
+  "Binary_Options_Bot",
+  "binary_options_real_market_signal_bot",
+  "chastech-trading-bot",
+  "EURUSD_-bot",
+  "Fx_trading_bot",
+  "MULTI-ASSET-AUTO-TRADE-BOT",
+  "Pocket-options-otc-signal-bot",
+  "Pocket_bot",
+  "Pocket_Option_real_market_bot",
+  "Trading-multi-asset-signal-bot",
+  "Trading_signal_bot-",
+  "Xauusd-signal-bot-backend",
+  "Xauusd-signal-bot-frontend",
+] as const;
+
 export const SKILLS = [
   {
     title: "Building with AI",
