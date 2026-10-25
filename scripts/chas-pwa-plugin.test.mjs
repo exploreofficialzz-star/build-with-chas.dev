@@ -515,19 +515,24 @@ test("renders the manifest with the per-app name", () => {
   assert.equal(manifest.icons[0].src, "/__chas/icon-180.png");
 });
 
-// Tripwires: the deployed-app path only works if Nitro scans server/ — an
-// accidental edit that drops serverDir or the middleware file would otherwise
-// fail silently (published apps would just render the app for ?install=1).
-test("vite config keeps the nitro serverDir wiring", () => {
+// Tripwires: the deployed-app path must stay wired through Cloudflare's SSR
+// Worker entry — dropping these handlers would silently break PWA routes.
+test("vite config keeps the Cloudflare SSR plugin and PWA dev plugin", () => {
   const viteConfig = readFileSync(join(TEMPLATE_ROOT, "vite.config.ts"), "utf8");
-  assert.match(viteConfig, /serverDir:\s*"\.\/server"/);
+  assert.match(viteConfig, /cloudflare\(\{ viteEnvironment: \{ name: "ssr" \} \}\)/);
+  assert.match(viteConfig, /tanstackStart\(\)/);
   assert.match(viteConfig, /chasPwaPlugin\(\)/);
 });
 
-test("nitro middleware and its bundled assets exist", () => {
-  const middleware = readFileSync(join(TEMPLATE_ROOT, "server/middleware/chas-pwa.ts"), "utf8");
-  assert.match(middleware, /install-page\.html\?raw/);
-  assert.match(middleware, /virtual:chas-og-identity/);
+test("Cloudflare Worker entry preserves dynamic PWA routes and metadata injection", () => {
+  const worker = readFileSync(join(TEMPLATE_ROOT, "src/server.ts"), "utf8");
+  assert.match(worker, /install-page\.html\?raw/);
+  assert.match(worker, /virtual:chas-og-identity/);
+  assert.match(worker, /renderWebManifest\(host\)/);
+  assert.match(worker, /renderInstallPageHtml/);
+  assert.match(worker, /createHeadInjector/);
+  const wrangler = readFileSync(join(TEMPLATE_ROOT, "wrangler.jsonc"), "utf8");
+  assert.match(wrangler, /"main":\s*"\.\/src\/server\.ts"/);
   readFileSync(join(TEMPLATE_ROOT, "scripts/install-page.html"));
   readFileSync(join(TEMPLATE_ROOT, "public/__chas/icon-180.png"));
   readFileSync(join(TEMPLATE_ROOT, "public/__chas/install/styles.css"));
@@ -538,4 +543,3 @@ test("vite plugin bakes og identity as a virtual module", () => {
   assert.match(plugin, /virtual:chas-og-identity/);
   assert.match(plugin, /snapshotOgIdentity/);
 });
-
