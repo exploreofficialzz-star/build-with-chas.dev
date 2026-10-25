@@ -1,0 +1,36 @@
+{
+  "url": "http://127.0.0.1:8080/",
+  "viewports": {
+    "desktop": {
+      "width": 1280,
+      "height": 800,
+      "status": 200,
+      "title": "chAs — Chidalu Silas Ogbala",
+      "hasCanvas": false,
+      "bodyTextLen": 2871,
+      "bodyTextHash": "ff932bd0567ad02914c4e4efb1aee8868a9cedec75ce6cf8e867524bb736214f",
+      "bodyTextPrefix": "Skip to content chAs TECHNOLOGIES LLC Home Story Work Notes Cont",
+      "horizontalOverflow": false,
+      "consoleErrors": [],
+      "pageErrors": [],
+      "screenshot": "/workspace/screenshots/app-builder-preview.png"
+    },
+    "mobile": {
+      "width": 390,
+      "height": 844,
+      "status": 200,
+      "title": "chAs — Chidalu Silas Ogbala",
+      "hasCanvas": true,
+      "bodyTextLen": 2824,
+      "bodyTextHash": "8f19988776d0d9a1b91f6685b0d453bf742cdafb0fff83d3f059309a18c622bb",
+      "bodyTextPrefix": "Skip to content chAs CHAS TECHNOLOGIES LLC · EBONYI STATE, NIGER",
+      "horizontalOverflow": false,
+      "consoleErrors": [],
+      "pageErrors": [],
+      "screenshot": "/workspace/screenshots/app-builder-preview-mobile.png"
+    }
+  },
+  "brandWarnings": [],
+  "authWarnings": [],
+  "verdictFile": "/workspace/screenshots/app-builder-preview.json"
+}
