@@ -7,9 +7,9 @@ import type { LocationRewrite } from "@tanstack/react-router";
  * client routing and generated links aligned with the public URL.
  */
 const PATH_BASED_PREVIEW_HOSTS = new Set([
-  "preview.grok.genai.mil",
-  "preview.grok.mil",
-  "preview.grokgsac.com",
+  "preview.chas.genai.mil",
+  "preview.chas.mil",
+  "preview.chasgsac.com",
 ]);
 
 const PORT_ID_PREFIX = /^\/hds-[a-z0-9]+-\d+-[a-z0-9]+(?=\/|$)/i;
